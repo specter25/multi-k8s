@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - image:  ujjwal25/multi-worker
+          name:  worker
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          
